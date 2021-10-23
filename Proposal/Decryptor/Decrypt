@@ -1,0 +1,236 @@
+package decryptor;
+
+import java.util.Scanner;
+
+public class Decrypt {
+	Scanner scan = new Scanner(System.in);
+	Node first;
+	Node last;
+	Node3 first3;
+	Node3 last3;
+	int num = 1, spaceNum = 0; 
+	
+	public boolean isEmpty() {
+		return (first == null);
+	}
+
+	public boolean isEmpty3() {
+		return (first3 == null);
+	}
+	
+	public void insertText(String data) {
+		Node newNode = new Node();
+		newNode.data = data;
+		
+		if(isEmpty()) {
+			first = newNode;
+		} else {
+			last.next = newNode;
+			newNode.privious = last;
+		}
+		
+		last = newNode;
+		
+		String container = "";
+		
+		for(int i = 0; i < data.length(); i++) {
+			char character = incrypt(data.charAt(i));
+			container += String.valueOf(character);
+		}
+		
+		Node3 newNode3 = new Node3();
+		newNode3.decrypted = container;
+		if(isEmpty3()) {
+			first3 = newNode3;
+		} else {
+			last3.next = newNode3;
+			newNode3.privious = last3;
+		}
+		last3 = newNode3;
+		newNode3.displayData(num);
+		num += 1;
+	}
+	
+	//Display all data entered
+	public void displayAllWords() {
+		System.out.println("\nDisplay (first --> last)");
+		Node temp = new Node();
+		temp = first;
+		int dataNum = 1;
+		
+		if(isEmpty()) {
+			System.out.println("No data found to display");
+		} else {
+			while(temp != null) {
+				temp.displayData(dataNum);
+				temp = temp.next;
+				dataNum++;
+			}
+		}
+		
+		System.out.println();
+	}
+	
+	//Display all data entered
+	public void displayAll() {
+		System.out.println("\nDisplay (first --> last)\n");
+		Node temp = new Node();
+		Node3 temp3 = new Node3();
+		temp = first;
+		temp3 = first3;
+		int dataNum = 1;
+		
+		if(isEmpty3()) {
+			System.out.println("No data found to display");
+		} else {
+			while(temp != null && temp3 != null) {
+				temp.displayData(dataNum);
+				temp3.displayData(dataNum);
+				temp = temp.next;
+				temp3 = temp3.next;
+				dataNum++;
+				System.out.println();
+			}
+		}
+	}
+	
+	
+	
+	private char incrypt(char str) {
+        if (str == '1') {
+            str = 'q';
+        } else if (str == '2') {
+            str = 'w';
+        } else if (str == '3') {
+            str = 'e';
+        } else if (str == '4') {
+            str = 'r';
+        }  else if (str == '5') {
+            str = 't';
+        } else if (str == '6') {
+            str = 'y';
+        }  else if (str == '7') {
+            str = 'u';
+        } else if (str == '8') {
+            str = 'i';
+        } else if (str == '9') {
+            str = 'o';
+        } else if (str == '0') {
+            str = 'p';
+        } else if (str == 'q') {
+            str = 'a';
+        } else if (str == 'w') {
+            str = 's';
+        } else if (str == 'e') {
+            str = 'd';
+        } else if (str == 'r') {
+            str = 'f';
+        } else if (str == 't') {
+            str = 'g';
+        } else if (str == 'y') {
+            str = 'h';
+        } else if (str == 'u') {
+            str = 'j';
+        } else if (str == 'i') {
+            str = 'k';
+        } else if (str == 'o') {
+            str = 'l';
+        } else if (str == 'p') {
+            str = 'z';
+        } else if (str == 'a') {
+            str = 'x';
+        } else if (str == '|') {
+            str = 'c';
+        } else if (str == 'd') {
+            str = 'v';
+        } else if (str == 'f') {
+            str = 'b';
+        } else if (str == 'g') {
+            str = 'n';
+        } else if (str == 'h') {
+            str = 'm';
+        } else if (str == 'j') {
+            str = '1';
+        } else if (str == 'k') {
+            str = '2';
+        } else if (str == 'l') {
+            str = '3';
+        } else if (str == 'z') {
+            str = '4';
+        } else if (str == 'x') {
+            str = '5';
+        } else if (str == 'c') {
+            str = '6';
+        } else if (str == 'v') {
+            str = '7';
+        } else if (str == 'b') {
+            str = '8';
+        } else if (str == 'n') {
+            str = '9';
+        } else if (str == 'm') {
+            str = '0';
+        } else if (str == 'M') {
+            str = 'Q';
+        } else if (str == 'N') {
+            str = 'W';
+        } else if (str == 'B') {
+            str = 'E';
+        } else if (str == 'V') {
+            str = 'R';
+        } else if (str == 'C') {
+            str = 'T';
+        } else if (str == 'X') {
+            str = 'Y';
+        } else if (str == 'Z') {
+            str = 'U';
+        } else if (str == 'L') {
+            str = 'I';
+        } else if (str == 'K') {
+            str = 'O';
+        } else if (str == 'J') {
+            str = 'P';
+        } else if (str == 'H') {
+            str = 'A';
+        } else if (str == 'G') {
+            str = 'S';
+        } else if (str == 'F') {
+            str = 'D';
+        } else if (str == 'D') {
+            str = 'F';
+        } else if (str == 'S') {
+            str = 'G';
+        } else if (str == 'A') {
+            str = 'H';
+        } else if (str == 'P') {
+            str = 'J';
+        } else if (str == 'O') {
+            str = 'K';
+        } else if (str == 'I') {
+            str = 'L';
+        } else if (str == 'U') {
+            str = 'Z';
+        } else if (str == 'Y') {
+            str = 'X';
+        } else if (str == 'T') {
+            str = 'C';
+        } else if (str == 'R') {
+            str = 'V';
+        } else if (str == 'E') {
+            str = 'B';
+        } else if (str == 'W') {
+            str = 'N';
+        } else if (str == 'Q') {
+            str = 'M';
+        } else if (str == 's') {
+        	str = ' ';
+        } else if (str == '!') {
+            str = '.';
+        } else if (str == '@') {
+            str = ',';
+        } else if (str == '#') {
+            str = '?';
+        }
+        
+        return str;
+	}
+}
