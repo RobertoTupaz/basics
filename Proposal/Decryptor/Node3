@@ -1,0 +1,11 @@
+package decryptor;
+
+public class Node3 {
+	Node3 next;
+	Node3 privious;
+	String decrypted;
+	
+	public void displayData(int num) {
+		System.out.println("Incrypted text(" + num + ") : " + decrypted);
+	}
+}
