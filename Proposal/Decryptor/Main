@@ -1,0 +1,30 @@
+package decryptor;
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		Decrypt decrypt = new Decrypt();
+		String dataToDecrypt = " ";
+		System.out.println("Click \"enter\" key to terminate the program.\nEnter '-' to show all data entered\nEnter '+' to show all data entered + decryption ");
+		
+		while(dataToDecrypt != "") {
+			System.out.print("\nEnter Text to decrypt : ");
+			dataToDecrypt = scan.nextLine();
+			if(dataToDecrypt == "") {
+				break;
+			} else if(dataToDecrypt.charAt(0) == '-') {
+				decrypt.displayAllWords();
+			} else if(dataToDecrypt.charAt(0) == '+') {
+				decrypt.displayAll();
+			} else {
+				decrypt.insertText(dataToDecrypt);
+			}
+		}
+		
+		System.out.println("Program Terminated.");
+		scan.close();
+	}
+	
+}
