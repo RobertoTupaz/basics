@@ -6,12 +6,15 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		Incrypt obj = new Incrypt();
+		
 		String dataToIncrypt = " ";
-		System.out.println("Click \"enter\" key to terminate the program.\nEnter '-' to show all data entered\nEnter '+' to show all data entered + incryption ");
+		printInstruc();
 		
 		while(dataToIncrypt != "") {
+			
 			System.out.print("\nEnter Text to incrypt : ");
-			dataToIncrypt = scan.nextLine();
+			dataToIncrypt = scan.nextLine();	//Scan Message to Incrypt
+			
 			if(dataToIncrypt == "") {
 				break;
 			} else if(dataToIncrypt.charAt(0) == '-') {
@@ -25,6 +28,10 @@ public class Main {
 		
 		System.out.println("Program Terminated.");
 		scan.close();
+	}
+	
+	static void printInstruc() {
+		System.out.println("Click \"enter\" key to terminate the program.\nEnter '-' to show all data entered\nEnter '+' to show all data entered + incryption ");
 	}
 	
 }
