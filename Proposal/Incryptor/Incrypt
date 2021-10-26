@@ -5,18 +5,19 @@ public class Incrypt {
 	Scanner scan = new Scanner(System.in);
 	Node first;
 	Node last;
-	Node2 first3;
-	Node2 last3;
+	Node2 first2;
+	Node2 last2;
 	int num = 1;
 	
 	public boolean isEmpty() {
-		return (first == null);
+		return (first == null); //check first if equal to null
 	}
 
-	public boolean isEmpty3() {
-		return (first3 == null);
+	public boolean isEmpty2() {
+		return (first2 == null); //check first2 if equal to null
 	}
 	
+	//Save data to Node 
 	public void insertText(String data) {
 		Node newNode = new Node();
 		newNode.data = data;
@@ -30,21 +31,23 @@ public class Incrypt {
 		
 		last = newNode;
 		
+		//Incrypt data one by one and store it to String variable
 		String container = "";
 		for(int i = 0; i < data.length(); i++) {
 			char character = incrypt(data.charAt(i));
 			container += String.valueOf(character);
 		}
 		
+		//save incrypted data to Node2
 		Node2 newNode3 = new Node2();
 		newNode3.incrypted = container;
-		if(isEmpty3()) {
-			first3 = newNode3;
+		if(isEmpty2()) {
+			first2 = newNode3;
 		} else {
-			last3.next = newNode3;
-			newNode3.privious = last3;
+			last2.next = newNode3;
+			newNode3.privious = last2;
 		}
-		last3 = newNode3;
+		last2 = newNode3;
 		newNode3.displayData(num);
 		num += 1;
 	}
@@ -75,10 +78,10 @@ public class Incrypt {
 		Node temp = new Node();
 		Node2 temp3 = new Node2();
 		temp = first;
-		temp3 = first3;
+		temp3 = first2;
 		int dataNum = 1;
 		
-		if(isEmpty3()) {
+		if(isEmpty2()) {
 			System.out.println("No data found to display");
 		} else {
 			while(temp != null && temp3 != null) {
@@ -93,141 +96,208 @@ public class Incrypt {
 	}
 	
 	
-	
+	//data incryptor
 	private char incrypt(char str) {
-        if (str == 'q') {
-            str = '1';
-        } else if (str == 'w') {
-            str = '2';
-        } else if (str == 'r') {
-            str = '4';
-        } else if (str == 't') {
-            str = '5';
-        } else if (str == 'y') {
-            str = '6';
-        } else if (str == 'p') {
-            str = '0';
-        } else if (str == 's') {
-            str = 'w';
-        } else if (str == 'd') {
-            str = 'e';
-        } else if (str == 'f') {
-            str = 'r';
-        } else if (str == 'g') {
-            str = 't';
-        } else if (str == 'h') {
-            str = 'y';
-        } else if (str == 'j') {
-            str = 'u';
-        } else if (str == 'k') {
-            str = 'i';
-        } else if (str == 'l') {
-            str = 'o';
-        } else if (str == 'z') {
-            str = 'p';
-        } else if (str == 'x') {
-            str = 'a';
-        } else if (str == 'c') {
-            str = '|';
-        } else if (str == 'v') {
-            str = 'd';
-        } else if (str == 'b') {
-            str = 'f';
-        } else if (str == 'n') {
-            str = 'g';
-        } else if (str == 'm') {
-            str = 'h';
-        } else if (str == '1') {
-            str = 'j';
-        } else if (str == '2') {
-            str = 'k';
-        } else if (str == '3') {
-            str = 'l';
-        } else if (str == '4') {
-            str = 'z';
-        } else if (str == '5') {
-            str = 'x';
-        } else if (str == '6') {
-            str = 'c';
-        } else if (str == '7') {
-            str = 'v';
-        } else if (str == '8') {
-            str = 'b';
-        } else if (str == '9') {
-            str = 'n';
-        } else if (str == '0') {
-            str = 'm';
-        } else if (str == 'Q') {
-            str = 'M';
-        } else if (str == 'W') {
-            str = 'N';
-        } else if (str == 'E') {
-            str = 'B';
-        } else if (str == 'R') {
-            str = 'V';
-        } else if (str == 'T') {
-            str = 'C';
-        } else if (str == 'Y') {
-            str = 'X';
-        } else if (str == 'U') {
-            str = 'Z';
-        } else if (str == 'I') {
-            str = 'L';
-        } else if (str == 'O') {
-            str = 'K';
-        } else if (str == 'P') {
-            str = 'J';
-        } else if (str == 'A') {
-            str = 'H';
-        } else if (str == 'S') {
-            str = 'G';
-        } else if (str == 'D') {
-            str = 'F';
-        } else if (str == 'F') {
-            str = 'D';
-        } else if (str == 'G') {
-            str = 'S';
-        } else if (str == 'H') {
-            str = 'A';
-        } else if (str == 'J') {
-            str = 'P';
-        } else if (str == 'K') {
-            str = 'O';
-        } else if (str == 'L') {
-            str = 'I';
-        } else if (str == 'Z') {
-            str = 'U';
-        } else if (str == 'X') {
-            str = 'Y';
-        } else if (str == 'C') {
-            str = 'T';
-        } else if (str == 'V') {
-            str = 'R';
-        } else if (str == 'B') {
-            str = 'E';
-        } else if (str == 'N') {
-            str = 'W';
-        } else if (str == 'M') {
-            str = 'Q';
-        } else if (str == ' ') {
-        	str = 's';
-        } else if (str == '.') {
-            str = '!';
-        } else if (str == ',') {
-            str = '@';
-        } else if (str == '?') {
-            str = '#';
-        } else if (str == 'a') {
-       		str = 'q';
-        } else if (str == 'e') {
-        	str = '3';
-        } else if (str == 'u') {
-        	str = '7';
-        } else if (str == 'i') {
-        	str = '8';
-        } else if (str == 'o') {
-        	str = '9';
-        }
+		switch(str) {
+			case 'q':
+				str = '1';
+			break;
+			case 'w':
+				str = '2';
+			break;
+			case 'r':
+				str = '4';
+			break;
+			case 't':
+				str = '5';
+			break;
+			case 'y':
+				str = '6';
+			break;
+			case 'p':
+				str = '0';
+			break;
+			case 's':
+				str = 'w';
+			break;
+			case 'd':
+				str = 'e';
+			break;
+			case 'f':
+				str = 'r';
+			break;
+			case 'g':
+				str = 't';
+			break;
+			case 'h':
+				str = 'y';
+			break;
+			case 'j':
+				str = 'u';
+			break;
+			case 'k':
+				str = 'i';
+			break;
+			case 'l':
+				str = 'o';
+			break;
+			case 'z':
+				str = 'p';
+			break;
+			case 'x':
+				str = 'a';
+			break;
+			case 'c':
+				str = '|';
+			break;
+			case 'v':
+				str = 'd';
+			break;
+			case 'b':
+				str = 'f';
+			break;
+			case 'n':
+				str = 'g';
+			break;
+			case 'm':
+				str = 'h';
+			break;
+			case '1':
+				str = 'j';
+			break;
+			case '2':
+				str = 'k';
+			break;
+			case '3':
+				str = 'l';
+			break;
+			case '4':
+				str = 'z';
+			break;
+			case '5':
+				str = 'x';
+			break;
+			case '6':
+				str = 'c';
+			break;
+			case '7':
+				str = 'v';
+			break;
+			case '8':
+				str = 'b';
+			break;
+			case '9':
+				str = 'n';
+			break;
+			case '0':
+				str = 'm';
+			break;
+			case 'Q':
+				str = 'M';
+			break;
+			case 'W':
+				str = 'N';
+			break;
+			case 'E':
+				str = 'B';
+			break;
+			case 'R':
+				str = 'V';
+			break;
+			case 'T':
+				str = 'C';
+			break;
+			case 'Y':
+				str = 'X';
+			break;
+			case 'U':
+				str = 'Z';
+			break;
+			case 'I':
+				str = 'L';
+			break;
+			case 'O':
+				str = 'K';
+			break;
+			case 'P':
+				str = 'J';
+			break;
+			case 'A':
+				str = 'H';
+			break;
+			case 'S':
+				str = 'G';
+			break;
+			case 'D':
+				str = 'F';
+			break;
+			case 'F':
+				str = 'D';
+			break;
+			case 'G':
+				str = 'S';
+			break;
+			case 'H':
+				str = 'A';
+			break;
+			case 'J':
+				str = 'P';
+			break;
+			case 'K':
+				str = 'O';
+			break;
+			case 'L':
+				str = 'I';
+			break;
+			case 'Z':
+				str = 'U';
+			break;
+			case 'X':
+				str = 'Y';
+			break;
+			case 'C':
+				str = 'T';
+			break;
+			case 'V':
+				str = 'R';
+			break;
+			case 'B':
+				str = 'E';
+			break;
+			case 'N':
+				str = 'W';
+			break;
+			case 'M':
+				str = 'Q';
+			break;
+			case ' ':
+				str = 's';
+			break;
+			case '.':
+				str = '!';
+			break;
+			case ',':
+				str = '@';
+			break;
+			case '?':
+				str = '#';
+			break;
+			case 'a':
+				str = 'q';
+			break;
+			case 'e':
+				str = '3';
+			break;
+			case 'u':
+				str = '7';
+			break;
+			case 'i':
+				str = '8';
+			break;
+			case 'o':
+				str = '9';
+			break;
+		}
         
         return str;
 	}
