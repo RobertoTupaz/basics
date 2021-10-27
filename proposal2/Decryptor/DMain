@@ -1,0 +1,53 @@
+package decryptor;
+import java.util.Scanner;
+
+public class DMain {
+	Scanner scan = new Scanner(System.in);
+	Decrypt decrypt = new Decrypt();
+	
+	public void toDecrypt() {
+		String dataToDecrypt = " ";
+		printInstruc();
+		
+		while(dataToDecrypt != "") {
+			System.out.print("\nEnter Text to decrypt : ");
+			dataToDecrypt = scan.nextLine();
+			if(dataToDecrypt == "") {
+				break;
+			} else if(dataToDecrypt.charAt(0) == '-') {
+				decrypt.displayAllWords();
+				
+			} else if(dataToDecrypt.charAt(0) == '*') {
+				decrypt.displayAllWordsBack();
+				
+			} else if(dataToDecrypt.charAt(0) == '+') {
+				decrypt.displayAll();
+				
+			} else if(dataToDecrypt.charAt(0) == '/') {
+				decrypt.displayAllBack();
+				
+			} else if(dataToDecrypt.charAt(0) == '_') {
+				decrypt.clearAll();
+				
+			} else {
+				decrypt.insertText(dataToDecrypt);
+			}
+		}
+		
+		System.out.println("Decrypt Program Terminated.");
+	}
+	
+	private void printInstruc() {
+		System.out.println("\nClick \"enter key\" to terminate the program");
+		System.out.println("Enter '-' to show all data entered");
+		System.out.println("Enter '*' to show all data entered backwards");
+		System.out.println("Enter '+' to show all data entered + decryption");
+		System.out.println("Enter '/' to show all data entered + decryption backwards");
+		System.out.println("Enter '_' to clear all Listed data");
+	}
+	
+	public void closeScan() {
+		scan.close();
+	}
+	
+}
