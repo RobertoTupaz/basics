@@ -1,0 +1,51 @@
+package incryptor;
+import java.util.Scanner;
+
+public class EMain {
+	Scanner scan = new Scanner(System.in);
+	Encrypt obj = new Encrypt();
+	
+	public void toEncrypt() {
+		
+		String dataToEncrypt = " ";
+		printInstruc();
+		
+		while(dataToEncrypt != "") {
+			
+			System.out.print("\nEnter Text to encrypt : ");
+			dataToEncrypt = scan.nextLine();	//Scan Message to Encrypt
+			
+			if(dataToEncrypt == "") {
+				break;
+			} else if(dataToEncrypt.charAt(0) == '-') {
+				obj.displayAllWords();
+			} else if(dataToEncrypt.charAt(0) == '+') {
+				obj.displayAll();
+			} else if(dataToEncrypt.charAt(0) == '*'){
+				obj.displayAllWordsBack();
+			} else if(dataToEncrypt.charAt(0) == '/'){
+				obj.displayAllBack();
+			} else if(dataToEncrypt.charAt(0) == '_'){
+				obj.clearAll();
+			} else  {
+				obj.insertText(dataToEncrypt);
+			}
+		}
+		
+		System.out.println("Encrypt Program Terminated.");
+		//scan.close();
+	}
+	
+	private void printInstruc() {
+		System.out.println("\nClick \"Enter Key\" to terminate the program.");
+		System.out.println("Enter '-' to show all data entered");
+		System.out.println("Enter '*' to show all data entered backwards");
+		System.out.println("Enter '+' to show all data entered + encryption");
+		System.out.println("Enter '_' to clear all listed data");
+	}
+	
+	public void closeScan() {
+		scan.close();
+	}
+	
+}
