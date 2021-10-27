@@ -1,0 +1,43 @@
+package main;
+import java.util.Scanner;
+import incryptor.EMain;
+import decryptor.DMain;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		EMain objE = new EMain();
+		DMain objD = new DMain();
+		char choice = ' ';
+		
+		while (choice != 0) {
+			printInstruc();
+			choice = scan.next().charAt(0);
+			if(choice == '0') {
+				break;
+			} else if(choice == '1') {
+				objE.toEncrypt();
+			} else if (choice == '2') {
+				objD.toDecrypt();
+			} else {
+				System.out.println("Try again");
+			}
+	
+			
+		}
+		
+		scan.close();
+		objE.closeScan();
+		objD.closeScan();
+		
+		System.out.println("Program terminated!");
+	}
+	
+	private static void printInstruc() {
+		System.out.println("\n\ninput 0 to Terminate the program");
+		System.out.println("input 1 to Incrypt a message");
+		System.out.println("input 2 to Decrypt a message");
+		System.out.print("\nInput : ");
+	}
+}
