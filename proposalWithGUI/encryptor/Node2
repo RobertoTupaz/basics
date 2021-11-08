@@ -1,0 +1,11 @@
+package encryptor;
+
+public class Node2 {
+	public Node2 next;
+	public Node2 privious;
+	String encrypted;
+	
+	public void displayData(int num) {
+		System.out.println("Encrypted text(" + num + ") : " + encrypted);
+	}
+}
