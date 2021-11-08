@@ -1,0 +1,90 @@
+package encryptor;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Frame {
+	private JFrame frame;
+	private JPanel panelC, panelN, panelS, panelE, panelW;
+	private JButton encryptImageButton, encryptTextButton;
+	ImageIcon image = new ImageIcon("proposalLogo.png");
+	
+	ActionListener listener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			if(event.getSource() == encryptImageButton) {
+				ImageFrame imageFrame = new ImageFrame();
+				imageFrame.run();
+				frame.dispose();
+			} else if (event.getSource() == encryptTextButton) {
+				TextFrame txtFrame = new TextFrame();
+				txtFrame.run();
+				frame.dispose();
+		
+			}
+		}
+	};
+
+	public void myFrame() {
+		frame = new JFrame("ProjectProposal");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(1000, 700);
+		frame.setLayout(new BorderLayout());
+		frame.setIconImage(image.getImage());
+		frame.add(panelN, BorderLayout.NORTH);
+		frame.add(panelS, BorderLayout.SOUTH);
+		frame.add(panelE, BorderLayout.EAST);
+		frame.add(panelW, BorderLayout.WEST);
+		frame.add(panelC, BorderLayout.CENTER);
+		frame.setVisible(true);
+	}
+	
+	public void buttons() {
+		encryptImageButton = new JButton("Image Encryption");
+		encryptImageButton.setFocusable(false);
+		encryptImageButton.addActionListener(listener);
+		encryptImageButton.setFont(new Font("Castellar", Font.PLAIN, 50));
+		encryptImageButton.setBackground(Color.LIGHT_GRAY);
+		
+		encryptTextButton = new JButton("Text Encryption");
+		encryptTextButton.setFocusable(false);
+		encryptTextButton.addActionListener(listener);
+		encryptTextButton.setFont(new Font("Castellar", Font.PLAIN, 50));
+		encryptTextButton.setBackground(Color.LIGHT_GRAY);
+	}
+	
+	public void panels() {
+		panelN = new JPanel();
+		panelN.setPreferredSize(new Dimension(300, 100));
+		panelN.setBackground(Color.gray);
+		
+		panelS = new JPanel();
+		panelS.setPreferredSize(new Dimension(300, 100));
+		panelS.setBackground(Color.gray);
+		
+		panelE = new JPanel();
+		panelE.setPreferredSize(new Dimension(100, 300));
+		panelE.setBackground(Color.gray);
+		
+		panelW = new JPanel();
+		panelW.setPreferredSize(new Dimension(100, 300));
+		panelW.setBackground(Color.gray);
+		
+		panelC = new JPanel();
+		panelC.setPreferredSize(new Dimension(300, 300));
+		panelC.setBackground(Color.LIGHT_GRAY);
+		panelC.setLayout(new GridLayout(2, 0));
+		panelC.add(encryptImageButton);
+		panelC.add(encryptTextButton);
+	}
+}
