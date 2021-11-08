@@ -1,0 +1,13 @@
+package encryptor;
+
+public class EMain {
+	
+	public void toEncrypt() {
+		
+		Frame frame = new Frame();
+		frame.buttons();
+		frame.panels();
+		frame.myFrame();
+	
+	}
+}
