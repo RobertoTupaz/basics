@@ -1,0 +1,9 @@
+package q_and_a;
+
+public class Node {
+	Node next;
+	Node privious;
+	
+	String user;
+	int score;
+}
