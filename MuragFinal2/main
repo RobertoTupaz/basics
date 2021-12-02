@@ -1,0 +1,109 @@
+package main;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+import encryptorDecryptor.Frames;
+
+public class HomeFrame {
+		private JFrame homeFrame;
+		private JPanel homePanelC, homePanelN, homePanelS, homePanelE, homePanelW;
+		private JButton homeEncryptButton, homeDecryptButton;
+		private JLabel label;
+		public ImageIcon image = new ImageIcon("proposalLogo.png");
+		public ImageIcon image2 = new ImageIcon("proposalLogo2.png");
+	
+		public void runHomeFrame() {
+			labels();
+			buttons();
+			panels();
+			myFrame();
+		}
+		
+	
+	//Main Method	
+	public static void main(String[] args) {		
+		HomeFrame homeFrame = new HomeFrame();
+		homeFrame.runHomeFrame();
+			
+	}
+		
+
+	
+	//The Action Listener
+	ActionListener homeListener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			if(event.getSource() == homeEncryptButton) {
+				new Frames();
+				homeFrame.dispose();
+			} 
+		}
+	};
+	
+	//The Home Frame
+	private void myFrame() {
+		homeFrame = new JFrame("ProjectProposal");
+		homeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		homeFrame.setSize(1000, 700);
+		homeFrame.setLayout(new BorderLayout());
+		homeFrame.setIconImage(image.getImage());
+		homeFrame.add(homePanelN, BorderLayout.NORTH);
+		homeFrame.add(homePanelS, BorderLayout.SOUTH);
+		homeFrame.add(homePanelE, BorderLayout.EAST);
+		homeFrame.add(homePanelW, BorderLayout.WEST);
+		homeFrame.add(homePanelC, BorderLayout.CENTER);
+		homeFrame.setVisible(true);
+	}
+	
+	//The Buttons
+	private void buttons() {
+		homeEncryptButton = new JButton("Lets Go!!!");
+		homeEncryptButton.setFocusable(false);
+		homeEncryptButton.addActionListener(homeListener);
+		homeEncryptButton.setBackground(Color.LIGHT_GRAY);
+		homeEncryptButton.setFont(new Font("Lucida Calligraphy", Font.PLAIN, 100));
+		
+		homeDecryptButton = new JButton("LezzGoo!!!");
+		homeDecryptButton.setFocusable(false);
+		homeDecryptButton.addActionListener(homeListener);
+		homeDecryptButton.setBackground(Color.LIGHT_GRAY);
+		homeDecryptButton.setFont(new Font("Lucida Calligraphy", Font.PLAIN, 100));
+	}
+	
+	//The Panels
+	private void panels() {
+		homePanelN = new JPanel();
+		homePanelN.setPreferredSize(new Dimension(300, 100));
+		homePanelN.setBackground(Color.gray);
+		homePanelN.add(label);
+		
+		homePanelS = new JPanel();
+		homePanelS.setPreferredSize(new Dimension(300, 100));
+		homePanelS.setBackground(Color.gray);
+		
+		homePanelE = new JPanel();
+		homePanelE.setPreferredSize(new Dimension(100, 300));
+		homePanelE.setBackground(Color.gray);
+		
+		homePanelW = new JPanel();
+		homePanelW.setPreferredSize(new Dimension(100, 300));
+		homePanelW.setBackground(Color.gray);
+		
+		homePanelC = new JPanel();
+		homePanelC.setPreferredSize(new Dimension(300, 300));
+		homePanelC.setBackground(Color.LIGHT_GRAY);
+		homePanelC.setLayout(new GridLayout(1, 0));
+		homePanelC.add(homeEncryptButton);
+	}
+	
+	//The Labels
+	private void labels() {
+		label = new JLabel();
+		label.setText("Cryptic Missive");
+		label.setFocusable(false);
+		label.setIcon(image2);
+		label.setFont(new Font("ALGERIAN", Font.ITALIC, 50));
+	}
+}
