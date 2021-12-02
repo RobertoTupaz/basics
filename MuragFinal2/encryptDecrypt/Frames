@@ -11,7 +11,7 @@ import main.HomeFrame;
 public class Frames extends HomeFrame{
 	private JFrame frame;
 	private JPanel panelC, panelN, panelS, panelE, panelW;
-	private JButton toEncryptImageButton, encryptTextButton, decryptImageButton, decryptTextButton, okButton;
+	private JButton okButton;
 	private JLabel label, label2;
 	private JComboBox<String> box1, box2;
 	
@@ -40,47 +40,6 @@ public class Frames extends HomeFrame{
 	ActionListener listener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			if(event.getSource() == toEncryptImageButton) {
-				ImageFrame();
-				panelN.setVisible(false);
-				panelS.setVisible(false);
-				panelE.setVisible(false);
-				panelW.setVisible(false);
-				panelC.setVisible(false);
-				frame.add(I_frame);
-				frame.setVisible(true);
-			} else if (event.getSource() == encryptTextButton) {
-				TextFrame();
-				panelN.setVisible(false);
-				panelS.setVisible(false);
-				panelE.setVisible(false);
-				panelW.setVisible(false);
-				panelC.setVisible(false);
-				frame.add(E_frame);
-				frame.setVisible(true);
-		
-			} else if(event.getSource() == decryptImageButton) {
-				D_ImageFrame();
-				panelN.setVisible(false);
-				panelS.setVisible(false);
-				panelE.setVisible(false);
-				panelW.setVisible(false);
-				panelC.setVisible(false);
-				frame.add(DI_frame);
-				frame.setVisible(true);
-
-				
-			} else if (event.getSource() == decryptTextButton) {
-				DTextFrame();
-				panelN.setVisible(false);
-				panelS.setVisible(false);
-				panelE.setVisible(false);
-				panelW.setVisible(false);
-				panelC.setVisible(false);
-				frame.add(D_frame);
-				frame.setVisible(true);
-		
-			}
 			
 			if(event.getSource() == okButton) {
 				if(box1.getSelectedIndex() == 1 && box2.getSelectedIndex() == 1) {
@@ -167,30 +126,6 @@ public class Frames extends HomeFrame{
 		okButton.setFont(new Font("CALIBRI", Font.PLAIN, 20));
 		okButton.setBackground(Color.gray);
 		okButton.setPreferredSize(new Dimension(105, 30));
-		
-		toEncryptImageButton = new JButton("Encryption Image");
-		toEncryptImageButton.setFocusable(false);
-		toEncryptImageButton.addActionListener(listener);
-		toEncryptImageButton.setFont(new Font("Castellar", Font.PLAIN, 50));
-		toEncryptImageButton.setBackground(Color.LIGHT_GRAY);
-		
-		encryptTextButton = new JButton("Encryption Text");
-		encryptTextButton.setFocusable(false);
-		encryptTextButton.addActionListener(listener);
-		encryptTextButton.setFont(new Font("Castellar", Font.PLAIN, 50));
-		encryptTextButton.setBackground(Color.LIGHT_GRAY);
-		
-		decryptImageButton = new JButton("Decryption Image");
-		decryptImageButton.setFocusable(false);
-		decryptImageButton.addActionListener(listener);
-		decryptImageButton.setBackground(Color.LIGHT_GRAY);
-		decryptImageButton.setFont(new Font("Castellar", Font.PLAIN, 50));
-		
-		decryptTextButton = new JButton("Decryption Text");
-		decryptTextButton.setFocusable(false);
-		decryptTextButton.addActionListener(listener);
-		decryptTextButton.setBackground(Color.LIGHT_GRAY);
-		decryptTextButton.setFont(new Font("Castellar", Font.PLAIN, 50));
 	}
 	
 	//The Encryption JPanels
@@ -216,10 +151,6 @@ public class Frames extends HomeFrame{
 		panelC.setPreferredSize(new Dimension(200, 200));
 		panelC.setBackground(Color.LIGHT_GRAY);
 		panelC.setLayout(new FlowLayout(FlowLayout.CENTER));
-		//panelC.add(toEncryptImageButton);
-		//panelC.add(decryptImageButton);
-		//panelC.add(encryptTextButton);
-		//panelC.add(decryptTextButton);
 		panelC.add(label2);
 		panelC.add(box1);
 		panelC.add(box2);
