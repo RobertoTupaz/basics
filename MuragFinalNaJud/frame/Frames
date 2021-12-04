@@ -1,0 +1,1027 @@
+package frame;
+
+import java.io.*;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+import decryptor.*;
+import encryptor.*;
+
+public class Frames{
+	private JFrame frame;
+	private JPanel panelC, panelN, panelS, panelE, panelW;
+	private JButton okButton;
+	private JLabel label, label2;
+	private JComboBox<String> box1, box2;
+	
+	public ImageIcon image = new ImageIcon("proposalLogo.png");
+	public ImageIcon image2 = new ImageIcon("proposalLogo2.png");
+	
+	
+	//The Encryption Constructor
+	public Frames() {
+		comboBox();
+		imagelabel();
+		buttons();
+		panels();
+		myFrame();
+	}
+	
+	//The Encryption Action Listener
+	ActionListener listener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			
+			if(event.getSource() == okButton) {
+				if(box1.getSelectedIndex() == 1 && box2.getSelectedIndex() == 1) {
+					TextFrame();
+					panelN.setVisible(false);
+					panelS.setVisible(false);
+					panelE.setVisible(false);
+					panelW.setVisible(false);
+					panelC.setVisible(false);
+					frame.add(E_frame);
+					frame.setVisible(true);
+					
+				} else if(box1.getSelectedIndex() == 1 && box2.getSelectedIndex() == 2) {
+					ImageFrame();
+					panelN.setVisible(false);
+					panelS.setVisible(false);
+					panelE.setVisible(false);
+					panelW.setVisible(false);
+					panelC.setVisible(false);
+					frame.add(I_frame);
+					frame.setVisible(true);
+					
+				} else if(box1.getSelectedIndex() == 2 && box2.getSelectedIndex() == 1) {
+					DTextFrame();
+					panelN.setVisible(false);
+					panelS.setVisible(false);
+					panelE.setVisible(false);
+					panelW.setVisible(false);
+					panelC.setVisible(false);
+					frame.add(D_frame);
+					frame.setVisible(true);
+					
+				} else if(box1.getSelectedIndex() == 2 && box2.getSelectedIndex() == 2) {
+					D_ImageFrame();
+					panelN.setVisible(false);
+					panelS.setVisible(false);
+					panelE.setVisible(false);
+					panelW.setVisible(false);
+					panelC.setVisible(false);
+					frame.add(DI_frame);
+					frame.setVisible(true);
+					
+				} 
+			}
+		}
+	};
+
+	//The Encryption JFrame
+	public void myFrame() {
+		frame = new JFrame("ProjectProposal");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(1000, 700);
+		frame.setLayout(new BorderLayout());
+		frame.setIconImage(image.getImage());
+		frame.add(panelN, BorderLayout.NORTH);
+		frame.add(panelS, BorderLayout.SOUTH);
+		frame.add(panelE, BorderLayout.EAST);
+		frame.add(panelW, BorderLayout.WEST);
+		frame.add(panelC, BorderLayout.CENTER);
+		frame.setVisible(true);
+	}
+	
+	
+	//The Labels
+	public void imagelabel() {
+		label = new JLabel();
+		label.setText("Cryptic Missive");
+		label.setFocusable(false);
+		label.setIcon(image2);
+		label.setFont(new Font("ALGERIAN", Font.ITALIC, 50));
+		
+		label2 = new JLabel("Select to Process");
+		label2.setFont(new Font("Agency FB", Font.PLAIN, 20));
+		
+	}
+	
+	public void comboBox() {
+		String[] arr = {" ", "Encryption", "Decryption"};
+		box1 = new JComboBox<String>(arr);
+		box1.setFocusable(false);
+		
+		
+		String[] arr2 = {" ", "Text","Image"};
+		box2 = new JComboBox<String>(arr2);
+		box2.setFocusable(false);
+	}
+	
+	
+	//The Encryption JButtons
+	public void buttons() {
+		
+		okButton = new JButton("Proceed");
+		okButton.setFocusable(false);
+		okButton.addActionListener(listener);
+		okButton.setFont(new Font("CALIBRI", Font.PLAIN, 20));
+		okButton.setBackground(Color.gray);
+		okButton.setPreferredSize(new Dimension(105, 30));
+	}
+	
+	//The Encryption JPanels
+	public void panels() {
+		panelN = new JPanel();
+		panelN.setPreferredSize(new Dimension(300, 100));
+		panelN.setBackground(Color.gray);
+		panelN.add(label);
+		
+		panelS = new JPanel();
+		panelS.setPreferredSize(new Dimension(300, 100));
+		panelS.setBackground(Color.gray);
+		
+		panelE = new JPanel();
+		panelE.setPreferredSize(new Dimension(100, 300));
+		panelE.setBackground(Color.gray);
+		
+		panelW = new JPanel();
+		panelW.setPreferredSize(new Dimension(100, 300));
+		panelW.setBackground(Color.gray);
+		
+		panelC = new JPanel();
+		panelC.setPreferredSize(new Dimension(200, 200));
+		panelC.setBackground(Color.LIGHT_GRAY);
+		panelC.setLayout(new FlowLayout(FlowLayout.CENTER));
+		panelC.add(label2);
+		panelC.add(box1);
+		panelC.add(box2);
+		panelC.add(okButton);
+	}
+	
+	
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	
+	private JPanel E_frame;
+	private JPanel E_panel1, E_panel2, E_panelC, E_panelN, E_panelS, E_panelE, panelInE_panelE;
+	private JButton encryptButton, E_goBackButton, E_showAllButton, closeShowAllArea, E_deletButton, E_showAllButton2, goToD;
+	private JLabel E_inputLabel, encryptedLabel, E_instructionLabel;
+	private JTextArea inputArea, encryptedArea, showAllArea;
+	TextEncryptor Encrypt = new TextEncryptor();
+	
+	//The Text Encryption Constructor
+	public void TextFrame() {
+		E_labels();
+		E_textArea();
+		E_buttons();
+		E_panel();
+		E_myFrame();
+	}
+	
+	//The Text Encryption Action Listener
+	ActionListener E_listener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			if(event.getSource() == encryptButton) {
+				Encrypt.insertText(inputArea.getText());
+				encryptedArea.setText(Encrypt.getEncrypted());
+				Encrypt.storeData();
+				
+			} else if (event.getSource() == E_goBackButton) {
+				panelN.setVisible(true);
+				panelS.setVisible(true);
+				panelE.setVisible(true);
+				panelW.setVisible(true);
+				panelC.setVisible(true);
+				frame.remove(E_frame);
+				
+			} else if (event.getSource() == E_showAllButton) {
+				E_panelE.setVisible(true);
+				panelInE_panelE.setVisible(true);
+				showAllArea.setVisible(true);
+				showAllArea.setText(Encrypt.getData());
+				
+			} else if (event.getSource() == E_showAllButton2) {
+				E_panelE.setVisible(true);
+				panelInE_panelE.setVisible(true);
+				showAllArea.setVisible(true);
+				showAllArea.setText(Encrypt.getData2());
+				
+			} else if(event.getSource() == closeShowAllArea) {
+				E_panelE.setVisible(false);
+				panelInE_panelE.setVisible(false);
+				showAllArea.setVisible(false);
+				
+			} else if(event.getSource() == E_deletButton) {
+				Encrypt.deleteFile();
+				inputArea.setText("File Deleted Sucessfully");
+				encryptedArea.setText("File Deleted Sucessfully");
+				E_panelE.setVisible(false);
+				panelInE_panelE.setVisible(false);
+				showAllArea.setVisible(false);
+				
+			} else if(event.getSource() == goToD) {
+				DTextFrame();
+				panelN.setVisible(false);
+				panelS.setVisible(false);
+				panelE.setVisible(false);
+				panelW.setVisible(false);
+				panelC.setVisible(false);
+				frame.add(D_frame);
+				E_frame.setVisible(false);
+				frame.setVisible(true);
+			}
+		}
+	};
+
+	//The Text Encryption JFrame
+	public void E_myFrame() {
+		E_frame = new JPanel();
+		E_frame.setSize(1000, 700);
+		E_frame.setLayout(new BorderLayout(10, 10));
+		E_frame.add(E_panelN, BorderLayout.NORTH);
+		E_frame.add(E_panelS, BorderLayout.SOUTH);
+		E_frame.add(E_panelC, BorderLayout.CENTER);
+		E_frame.add(E_panelE, BorderLayout.EAST);
+		E_frame.setVisible(true);
+	}
+	
+	//The text Encryption JButtons
+	public void E_buttons() {
+		encryptButton = new JButton("Encrypt Text");
+		encryptButton.setFocusable(false);
+		encryptButton.addActionListener(E_listener);
+		encryptButton.setFont(new Font("Lucida Calligraphy", Font.ITALIC, 25));
+		encryptButton.setBackground(Color.LIGHT_GRAY);
+		
+		E_goBackButton = new JButton("Go back");
+		E_goBackButton.setFocusable(false);
+		E_goBackButton.addActionListener(E_listener);
+		E_goBackButton.setFont(new Font("Lucida Calligraphy", Font.ITALIC, 25));
+		E_goBackButton.setBackground(Color.LIGHT_GRAY);
+		
+		E_showAllButton = new JButton("Show All Data");
+		E_showAllButton.setFocusable(false);
+		E_showAllButton.addActionListener(E_listener);
+		E_showAllButton.setFont(new Font("Lucida Calligraphy", Font.ITALIC, 25));
+		E_showAllButton.setBackground(Color.LIGHT_GRAY);
+		
+		E_showAllButton2 = new JButton("Show All Data Backward");
+		E_showAllButton2.setFocusable(false);
+		E_showAllButton2.addActionListener(E_listener);
+		E_showAllButton2.setFont(new Font("Lucida Calligraphy", Font.ITALIC, 25));
+		E_showAllButton2.setBackground(Color.LIGHT_GRAY);
+		
+		goToD = new JButton("Go To Decrypt");
+		goToD.setFocusable(false);
+		goToD.addActionListener(E_listener);
+		goToD.setFont(new Font("Lucida Calligraphy", Font.ITALIC, 25));
+		goToD.setBackground(Color.LIGHT_GRAY);
+		
+		E_deletButton = new JButton("Delete All Data");
+		E_deletButton.setFocusable(false);
+		E_deletButton.addActionListener(E_listener);
+		E_deletButton.setFont(new Font("Lucida Calligraphy", Font.ITALIC, 25));
+		E_deletButton.setBackground(Color.LIGHT_GRAY);
+		
+		closeShowAllArea = new JButton("x");
+		closeShowAllArea.addActionListener(E_listener);
+	}
+	
+	//The Text Encryption JE_panelS
+	public void E_panel() {
+		E_panel1 = new JPanel();
+		E_panel1.setLayout(new BorderLayout(2, 2));
+		E_panel1.add(E_inputLabel, BorderLayout.NORTH);
+		E_panel1.add(inputArea, BorderLayout.SOUTH);
+		
+		E_panel2 = new JPanel();
+		E_panel2.setLayout(new BorderLayout(2, 2));
+		E_panel2.add(encryptedLabel, BorderLayout.NORTH);
+		E_panel2.add(encryptedArea, BorderLayout.SOUTH);
+		
+		E_panelN = new JPanel();
+		E_panelN.setPreferredSize(new Dimension(300, 100));
+		E_panelN.setBackground(Color.gray);
+		E_panelN.add(E_instructionLabel);
+		
+		E_panelS = new JPanel();
+		E_panelS.setPreferredSize(new Dimension(300, 100));
+		E_panelS.setBackground(Color.pink);
+		E_panelS.setLayout(new GridLayout(3, 2));
+		E_panelS.add(E_goBackButton);
+		E_panelS.add(encryptButton);
+		E_panelS.add(goToD);
+		E_panelS.add(E_showAllButton);
+		E_panelS.add(E_deletButton);
+		E_panelS.add(E_showAllButton2);
+		
+		
+		E_panelC = new JPanel();
+		E_panelC.setPreferredSize(new Dimension(300, 300));
+		E_panelC.setBackground(Color.LIGHT_GRAY);
+		E_panelC.setLayout(new GridLayout(2, 0));
+		E_panelC.add(E_panel1);
+		E_panelC.add(E_panel2);
+		
+		panelInE_panelE = new JPanel();
+		panelInE_panelE.setPreferredSize(new Dimension(0, 20));
+		panelInE_panelE.setBackground(Color.lightGray);
+		panelInE_panelE.setLayout(new BorderLayout());
+		panelInE_panelE.add(closeShowAllArea, BorderLayout.EAST);
+		
+		E_panelE = new JPanel();
+		E_panelE.setBackground(Color.LIGHT_GRAY);
+		E_panelE.setVisible(false);
+		E_panelE.setLayout(new BorderLayout());
+		E_panelE.setPreferredSize(new Dimension(700, 300));
+		E_panelE.add(panelInE_panelE, BorderLayout.NORTH);
+		E_panelE.add(showAllArea, BorderLayout.CENTER);
+	}
+	
+	//The Text Encryption JLabes
+	public void E_labels() {
+		E_inputLabel = new JLabel("Input Text");
+		
+		encryptedLabel = new JLabel("Encrypted Text");
+		
+		E_instructionLabel = new JLabel("Input Text and Click Encrypt");
+		E_instructionLabel.setFont(new Font("ALGERIAN", Font.BOLD, 50));
+	}
+	
+	//The Text Encryption JTextArea
+	public void E_textArea() {
+		inputArea = new JTextArea();
+		inputArea.setPreferredSize(new Dimension(200, 200));
+		
+		encryptedArea = new JTextArea();
+		encryptedArea.setPreferredSize(new Dimension(200, 200));
+		
+		showAllArea = new JTextArea();
+		showAllArea.setPreferredSize(new Dimension(400, 400));
+	}
+	
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+
+	
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	private String[] toDisplayText = {"Encrypt SuccessFully", "Error", "All Data Deleted Sucessfully"};
+	private JTextField imageNameField;
+	private JPanel I_frame;
+	private JPanel I_panelC, I_panelN, I_panelS, I_panelE, I_panelW, panelInPanelC, panelInPanelS1, panelInPanelS2;
+	private JButton encryptImageButton, I_goBackButton, proceedButton, I_deleteButton;
+	private JLabel successLabel, failedLabel, titleLabel, inputNameLabel;
+	ImageEncryptor IEncrypt = new ImageEncryptor();
+	
+	//The Image Encryption Constructor
+	public void ImageFrame() {
+		I_TextField();
+		I_labels();
+		I_buttons();
+		I_panel();
+		I_myFrame();
+	}
+	
+	//The Image Encryption ActionListener
+	ActionListener I_listener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			if(event.getSource() == encryptImageButton) {
+				panelInPanelC.setVisible(true);
+				proceedButton.setVisible(true);
+				inputNameLabel.setVisible(true);
+				imageNameField.setVisible(true);
+				successLabel.setVisible(false);
+				
+			} else if (event.getSource() == I_goBackButton) {
+				panelN.setVisible(true);
+				panelS.setVisible(true);
+				panelE.setVisible(true);
+				panelW.setVisible(true);
+				panelC.setVisible(true);
+				frame.remove(I_frame);
+				
+			} else if(event.getSource() == proceedButton) {
+				successLabel.setVisible(false);
+				JFileChooser chooseFile = new JFileChooser();
+				int response = chooseFile.showOpenDialog(null);
+				if(response == JFileChooser.APPROVE_OPTION) {
+					File file = new File(chooseFile.getSelectedFile().getAbsolutePath());
+					
+					try {
+						IEncrypt.EncryptImage(file, imageNameField.getText());
+						successLabel.setFont(new Font("ALGERIAN", Font.BOLD, 60));
+						successLabel.setText(toDisplayText[0]);
+						successLabel.setVisible(true);
+					} catch (IOException e) {
+						successLabel.setFont(new Font("ALGERIAN", Font.BOLD, 60));
+						successLabel.setText(toDisplayText[1]);
+						successLabel.setVisible(true);
+					}
+					
+				}
+				
+				panelInPanelC.setVisible(false);
+				proceedButton.setVisible(false);
+				inputNameLabel.setVisible(false);
+				imageNameField.setVisible(false);
+				
+			} else if(event.getSource() == I_deleteButton) {
+				successLabel.setFont(new Font("ALGERIAN", Font.BOLD, 40));
+				successLabel.setText(IEncrypt.deleteFolder());
+				successLabel.setVisible(true);
+				
+				panelInPanelC.setVisible(false);
+				proceedButton.setVisible(false);
+				inputNameLabel.setVisible(false);
+				imageNameField.setVisible(false);
+			}
+		}
+	};
+	
+
+	//The Image Encryption JFrame
+	public void I_myFrame() {
+		I_frame = new JPanel();
+		I_frame.setPreferredSize(new Dimension(1000, 700));
+		I_frame.setLayout(new BorderLayout());
+		I_frame.add(I_panelN, BorderLayout.NORTH);
+		I_frame.add(I_panelS, BorderLayout.SOUTH);
+		I_frame.add(I_panelE, BorderLayout.EAST);
+		I_frame.add(I_panelW, BorderLayout.WEST);
+		I_frame.add(I_panelC, BorderLayout.CENTER);
+		I_frame.setVisible(true);
+	}
+	
+	//The Image Encryption JLabels
+	public void I_labels() {
+		successLabel = new JLabel();
+		successLabel.setVisible(false);
+		successLabel.setHorizontalAlignment(JLabel.CENTER);
+		
+		failedLabel = new JLabel("Error!");
+		failedLabel.setVisible(false);
+		failedLabel.setFont(new Font("ALGERIAN", Font.BOLD, 100));
+		
+		titleLabel = new JLabel("Cryptic Missive");
+		titleLabel.setFont(new Font("ALGERIAN", Font.ITALIC, 80));
+		
+		inputNameLabel = new JLabel("Input Name : ");
+		inputNameLabel.setFont(new Font("ALGERIAN", Font.PLAIN, 25));
+	}
+	
+	//The Image Encryption JButtons
+	public void I_buttons() {
+		encryptImageButton = new JButton("Select Image to Encrypt");
+		encryptImageButton.setFocusable(false);
+		encryptImageButton.addActionListener(I_listener);
+		encryptImageButton.setBackground(Color.LIGHT_GRAY);
+		encryptImageButton.setFont(new Font("ALGERIAN", Font.ITALIC, 30));
+		
+		I_goBackButton = new JButton("Go Back");
+		I_goBackButton.setFocusable(false);
+		I_goBackButton.addActionListener(I_listener);
+		I_goBackButton.setBackground(Color.LIGHT_GRAY);
+		I_goBackButton.setFont(new Font("ALGERIAN", Font.ITALIC, 30));
+		
+		proceedButton = new JButton("Proceed");
+		proceedButton.setFocusable(false);
+		proceedButton.addActionListener(I_listener);
+		proceedButton.setBackground(Color.LIGHT_GRAY);
+		proceedButton.setFont(new Font("ALGERIAN", Font.ITALIC, 30));
+		
+		I_deleteButton = new JButton("Delete All Encrypted Image");
+		I_deleteButton.setFocusable(false);
+		I_deleteButton.addActionListener(I_listener);
+		I_deleteButton.setBackground(Color.LIGHT_GRAY);
+		I_deleteButton.setFont(new Font("ALGERIAN", Font.ITALIC, 30));
+	}
+	
+	//The Image Encryption JI_panelS
+	public void I_panel() {
+		panelInPanelS1 = new JPanel();
+		panelInPanelS1.setLayout(new GridLayout());
+		panelInPanelS1.add(encryptImageButton);
+		
+		panelInPanelS2 = new JPanel();
+		panelInPanelS2.setLayout(new GridLayout(0, 2));
+		panelInPanelS2.add(I_goBackButton);
+		panelInPanelS2.add(I_deleteButton);
+		
+		I_panelN = new JPanel();
+		I_panelN.setPreferredSize(new Dimension(300, 100));
+		I_panelN.setBackground(Color.gray);
+		I_panelN.add(titleLabel);
+		
+		I_panelS = new JPanel();
+		I_panelS.setPreferredSize(new Dimension(300, 100));
+		I_panelS.setBackground(Color.gray);
+		I_panelS.setLayout(new GridLayout(2, 0));
+		I_panelS.add(panelInPanelS1);
+		I_panelS.add(panelInPanelS2);
+		
+		I_panelE = new JPanel();
+		I_panelE.setPreferredSize(new Dimension(100, 300));
+		I_panelE.setBackground(Color.gray);
+		I_panelE.setLayout(new BorderLayout());
+		
+		I_panelW = new JPanel();
+		I_panelW.setPreferredSize(new Dimension(100, 300));
+		I_panelW.setBackground(Color.gray);
+		
+		panelInPanelC = new JPanel();
+		panelInPanelC.setLayout(new BorderLayout());
+		panelInPanelC.setBackground(Color.LIGHT_GRAY);
+		panelInPanelC.setVisible(false);
+		panelInPanelC.add(inputNameLabel, BorderLayout.WEST);
+		panelInPanelC.add(imageNameField, BorderLayout.CENTER);
+		panelInPanelC.add(proceedButton, BorderLayout.EAST);
+		
+		I_panelC = new JPanel();
+		I_panelC.setPreferredSize(new Dimension(300, 300));
+		I_panelC.setBackground(Color.LIGHT_GRAY);
+		I_panelC.setLayout(new BorderLayout());
+		I_panelC.add(panelInPanelC, BorderLayout.NORTH);
+		I_panelC.add(successLabel);
+	}
+	
+	//The Image Encryption JTextField
+	public void I_TextField() {
+		imageNameField = new JTextField();
+		imageNameField.setFont(new Font("CALIBRI", Font.PLAIN, 25));
+		
+	}
+	
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	
+
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////
+	////////:-|+++)                                                                                               |+++)
+	//////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////
+	///|+++)///    //    //
+	///|+++)///   //      //
+	///|+++)///   //      //
+	///|+++)///  //      //
+	///|+++)//////////////
+	///|+++)///      
+	///|+++)///
+	///|+++)///
+	///////////
+	///////////
+	////////////
+	/////////////
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////
+	////////:-|+++)                                                                                               |+++)
+	//////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////
+	///|+++)///    //    //
+	///|+++)///   //      //
+	///|+++)///   //      //
+	///|+++)///  //      //
+	///|+++)//////////////
+	///|+++)///      
+	///|+++)///
+	///|+++)///
+	///////////
+	///////////
+	////////////
+	/////////////
+	
+	private JPanel D_frame;
+	private JPanel D_panel1, D_panel2, D_panelC, D_panelN, D_panelS, D_panelE, panelInD_panelE;
+	private JButton decryptButton, D_goBackButton, D_showAllButton, D_showAllButton2, DcloseDshowAllArea, D_deletButton, goToE;
+	private JLabel D_inputLabel, decryptedLabel, D_instructionLabel;
+	private JTextArea DinputArea, decryptedArea, DshowAllArea;
+	TextDecryptor textDecryptor = new TextDecryptor();
+	
+	//The Text Encryption Constructor
+	public void DTextFrame() {
+		D_labels();
+		D_textArea();
+		D_buttons();
+		D_panel();
+		D_myFrame();
+	}
+	
+	//The Text Encryption Action Listener
+	ActionListener D_listener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			if(event.getSource() == decryptButton) {
+				textDecryptor.DinsertText(DinputArea.getText());
+				decryptedArea.setText(textDecryptor.Dgetdecrypted());
+				textDecryptor.storeDataD();
+				
+			} else if (event.getSource() == D_goBackButton) {
+				panelN.setVisible(true);
+				panelS.setVisible(true);
+				panelE.setVisible(true);
+				panelW.setVisible(true);
+				panelC.setVisible(true);
+				frame.remove(D_frame);
+				
+			} else if (event.getSource() == D_showAllButton) {
+				D_panelE.setVisible(true);
+				panelInD_panelE.setVisible(true);
+				DshowAllArea.setVisible(true);
+				DshowAllArea.setText(textDecryptor.getDataD());
+			} else if (event.getSource() == D_showAllButton2) {
+				D_panelE.setVisible(true);
+				panelInD_panelE.setVisible(true);
+				DshowAllArea.setVisible(true);
+				DshowAllArea.setText(textDecryptor.getData2D());
+			} else if(event.getSource() == DcloseDshowAllArea) {
+				D_panelE.setVisible(false);
+				panelInD_panelE.setVisible(false);
+				DshowAllArea.setVisible(false);
+			} else if(event.getSource() == D_deletButton) {
+				textDecryptor.deleteFileD();
+				DinputArea.setText("File Deleted Sucessfully");
+				decryptedArea.setText("File Deleted Sucessfully");
+				D_panelE.setVisible(false);
+				panelInD_panelE.setVisible(false);
+				DshowAllArea.setVisible(false);
+			} else if(event.getSource() == goToE) {
+				TextFrame();
+				panelN.setVisible(false);
+				panelS.setVisible(false);
+				panelE.setVisible(false);
+				panelW.setVisible(false);
+				panelC.setVisible(false);
+				frame.add(E_frame);
+				D_frame.setVisible(false);
+				frame.setVisible(true);
+			}
+		}
+	};
+
+	//The Text Encryption JFrame
+	public void D_myFrame() {
+		D_frame = new JPanel();
+		D_frame.setSize(1000, 700);
+		D_frame.setLayout(new BorderLayout(10, 10));
+		D_frame.add(D_panelN, BorderLayout.NORTH);
+		D_frame.add(D_panelS, BorderLayout.SOUTH);
+		D_frame.add(D_panelC, BorderLayout.CENTER);
+		D_frame.add(D_panelE, BorderLayout.EAST);
+		D_frame.setVisible(true);
+	}
+	
+	//The text Encryption JButtons
+	public void D_buttons() {
+		decryptButton = new JButton("Decrypt Text");
+		decryptButton.setFocusable(false);
+		decryptButton.addActionListener(D_listener);
+		decryptButton.setFont(new Font("Lucida Calligraphy", Font.ITALIC, 25));
+		decryptButton.setBackground(Color.LIGHT_GRAY);
+		
+		D_goBackButton = new JButton("Go back");
+		D_goBackButton.setFocusable(false);
+		D_goBackButton.addActionListener(D_listener);
+		D_goBackButton.setFont(new Font("Lucida Calligraphy", Font.ITALIC, 25));
+		D_goBackButton.setBackground(Color.LIGHT_GRAY);
+		
+		D_showAllButton = new JButton("Show All Data");
+		D_showAllButton.setFocusable(false);
+		D_showAllButton.addActionListener(D_listener);
+		D_showAllButton.setFont(new Font("Lucida Calligraphy", Font.ITALIC, 25));
+		D_showAllButton.setBackground(Color.LIGHT_GRAY);
+		
+		D_showAllButton2 = new JButton("Show All Data Backward");
+		D_showAllButton2.setFocusable(false);
+		D_showAllButton2.addActionListener(D_listener);
+		D_showAllButton2.setFont(new Font("Lucida Calligraphy", Font.ITALIC, 25));
+		D_showAllButton2.setBackground(Color.LIGHT_GRAY);
+		
+		goToE = new JButton("Go to Encrypt");
+		goToE.setFocusable(false);
+		goToE.addActionListener(D_listener);
+		goToE.setFont(new Font("Lucida Calligraphy", Font.ITALIC, 25));
+		goToE.setBackground(Color.LIGHT_GRAY);
+		
+		D_deletButton = new JButton("Delete All Data");
+		D_deletButton.setFocusable(false);
+		D_deletButton.addActionListener(D_listener);
+		D_deletButton.setFont(new Font("Lucida Calligraphy", Font.ITALIC, 25));
+		D_deletButton.setBackground(Color.LIGHT_GRAY);
+		
+		DcloseDshowAllArea = new JButton("x");
+		DcloseDshowAllArea.addActionListener(D_listener);
+	}
+	
+	//The Text Encryption JD_panelS
+	public void D_panel() {
+		D_panel1 = new JPanel();
+		D_panel1.setLayout(new BorderLayout(2, 2));
+		D_panel1.add(D_inputLabel, BorderLayout.NORTH);
+		D_panel1.add(DinputArea, BorderLayout.SOUTH);
+		
+		D_panel2 = new JPanel();
+		D_panel2.setLayout(new BorderLayout(2, 2));
+		D_panel2.add(decryptedLabel, BorderLayout.NORTH);
+		D_panel2.add(decryptedArea, BorderLayout.SOUTH);
+		
+		D_panelN = new JPanel();
+		D_panelN.setPreferredSize(new Dimension(300, 100));
+		D_panelN.setBackground(Color.gray);
+		D_panelN.add(D_instructionLabel);
+		
+		D_panelS = new JPanel();
+		D_panelS.setPreferredSize(new Dimension(300, 100));
+		D_panelS.setBackground(Color.pink);
+		D_panelS.setLayout(new GridLayout(3, 2));
+		D_panelS.add(D_goBackButton);
+		D_panelS.add(decryptButton);
+		D_panelS.add(goToE);
+		D_panelS.add(D_showAllButton);
+		D_panelS.add(D_deletButton);
+		D_panelS.add(D_showAllButton2);
+		
+		
+		D_panelC = new JPanel();
+		D_panelC.setPreferredSize(new Dimension(300, 300));
+		D_panelC.setBackground(Color.LIGHT_GRAY);
+		D_panelC.setLayout(new GridLayout(2, 0));
+		D_panelC.add(D_panel1);
+		D_panelC.add(D_panel2);
+		
+		panelInD_panelE = new JPanel();
+		panelInD_panelE.setPreferredSize(new Dimension(0, 20));
+		panelInD_panelE.setBackground(Color.lightGray);
+		panelInD_panelE.setLayout(new BorderLayout());
+		panelInD_panelE.add(DcloseDshowAllArea, BorderLayout.EAST);
+		
+		D_panelE = new JPanel();
+		D_panelE.setBackground(Color.LIGHT_GRAY);
+		D_panelE.setVisible(false);
+		D_panelE.setLayout(new BorderLayout());
+		D_panelE.setPreferredSize(new Dimension(700, 300));
+		D_panelE.add(panelInD_panelE, BorderLayout.NORTH);
+		D_panelE.add(DshowAllArea, BorderLayout.CENTER);
+	}
+	
+	//The Text Encryption JLabes
+	public void D_labels() {
+		D_inputLabel = new JLabel("Input Text");
+		
+		decryptedLabel = new JLabel("Decrypted Text");
+		
+		D_instructionLabel = new JLabel("Input Text and Click Decrypt");
+		D_instructionLabel.setFont(new Font("ALGERIAN", Font.BOLD, 50));
+	}
+	
+	//The Text Encryption JTextArea
+	public void D_textArea() {
+		DinputArea = new JTextArea();
+		DinputArea.setPreferredSize(new Dimension(200, 200));
+		
+		decryptedArea = new JTextArea();
+		decryptedArea.setPreferredSize(new Dimension(200, 200));
+		
+		DshowAllArea = new JTextArea();
+		DshowAllArea.setPreferredSize(new Dimension(400, 400));
+	}
+	
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	private String[] D_toDisplayText = {"Decrypt SuccessFully", "Error", "All Data Deleted Sucessfully"};
+	private JPanel DI_frame;
+	private JTextField D_imageNameField;
+	private JPanel DI_panelC, DI_panelN, DI_panelS, DI_panelE, DI_panelW, DI_panelInPanelC, DpanelInpanelS1, DpanelInpanelS2;
+	private JButton DI_decryptImageButton, DI_goBackButton, DproceedButton, DI_deleteButton;
+	private JLabel DsuccessLabel, DfailedLabel, DtitleLabel, DinputNameLabel;
+	ImageDecryptor IDecrypt = new ImageDecryptor();
+
+	
+	//The Image Decryption Constructor
+	public void D_ImageFrame() {
+		DI_TextField();
+		DI_labels();
+		DI_buttons();
+		DI_panelS();
+		DI_myFrame();
+	}
+	
+	//The Image Decryption Action Listener
+	ActionListener DI_listener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			if(event.getSource() == DI_decryptImageButton) {
+				DI_panelInPanelC.setVisible(true);
+				DproceedButton.setVisible(true);
+				DinputNameLabel.setVisible(true);
+				D_imageNameField.setVisible(true);
+				DsuccessLabel.setVisible(false);
+				
+			} else if (event.getSource() == DI_goBackButton) {
+				frame.remove(DI_frame);
+				panelN.setVisible(true);
+				panelS.setVisible(true);
+				panelE.setVisible(true);
+				panelW.setVisible(true);
+				panelC.setVisible(true);
+				
+			} else if(event.getSource() == DproceedButton) {
+				DsuccessLabel.setVisible(false);
+				JFileChooser chooseFile = new JFileChooser();
+				int response = chooseFile.showOpenDialog(null);
+				if(response == JFileChooser.APPROVE_OPTION) {
+					File file = new File(chooseFile.getSelectedFile().getAbsolutePath());
+					
+					try {
+						IDecrypt.DecryptImage(file, D_imageNameField.getText());
+						DsuccessLabel.setFont(new Font("ALGERIAN", Font.BOLD, 60));
+						DsuccessLabel.setText(D_toDisplayText[0]);
+						DsuccessLabel.setVisible(true);
+					} catch (IOException e) {
+						DsuccessLabel.setFont(new Font("ALGERIAN", Font.BOLD, 60));
+						DsuccessLabel.setText(D_toDisplayText[1]);
+						DsuccessLabel.setVisible(true);
+					}
+					
+				}
+				
+				DI_panelInPanelC.setVisible(false);
+				DproceedButton.setVisible(false);
+				DinputNameLabel.setVisible(false);
+				D_imageNameField.setVisible(false);
+				
+			} else if(event.getSource() == DI_deleteButton) {
+				DsuccessLabel.setFont(new Font("ALGERIAN", Font.BOLD, 40));
+				DsuccessLabel.setText(IDecrypt.D_deleteFolder());
+				DsuccessLabel.setVisible(true);
+				
+				DI_panelInPanelC.setVisible(false);
+				DproceedButton.setVisible(false);
+				DinputNameLabel.setVisible(false);
+				D_imageNameField.setVisible(false);
+			}
+		}
+	};
+
+	//The Image Decryption JFrame
+	public void DI_myFrame() {
+		DI_frame = new JPanel();
+		DI_frame.setPreferredSize(new Dimension(1000, 700));
+		DI_frame.setLayout(new BorderLayout());
+		DI_frame.add(DI_panelN, BorderLayout.NORTH);
+		DI_frame.add(DI_panelS, BorderLayout.SOUTH);
+		DI_frame.add(DI_panelE, BorderLayout.EAST);
+		DI_frame.add(DI_panelW, BorderLayout.WEST);
+		DI_frame.add(DI_panelC, BorderLayout.CENTER);
+		DI_frame.setVisible(true);
+	}
+	
+	public void DI_labels() {
+		DsuccessLabel = new JLabel();
+		DsuccessLabel.setVisible(false);
+		DsuccessLabel.setHorizontalAlignment(JLabel.CENTER);
+		
+		DfailedLabel = new JLabel("Error!");
+		DfailedLabel.setVisible(false);
+		DfailedLabel.setFont(new Font("ALGERIAN", Font.BOLD, 100));
+		
+		DtitleLabel = new JLabel("Cryptic Missive");
+		DtitleLabel.setFont(new Font("ALGERIAN", Font.ITALIC, 80));
+		
+		DinputNameLabel = new JLabel("Input Name : ");
+		DinputNameLabel.setFont(new Font("ALGERIAN", Font.PLAIN, 25));
+	}
+	
+	//The Image Decryption JButtons
+	public void DI_buttons() {
+		DI_decryptImageButton = new JButton("Select Image to Decrypt");
+		DI_decryptImageButton.setFocusable(false);
+		DI_decryptImageButton.addActionListener(DI_listener);
+		DI_decryptImageButton.setBackground(Color.LIGHT_GRAY);
+		DI_decryptImageButton.setFont(new Font("ALGERIAN", Font.ITALIC, 30));
+		
+		DI_goBackButton = new JButton("Go Back");
+		DI_goBackButton.setFocusable(false);
+		DI_goBackButton.addActionListener(DI_listener);
+		DI_goBackButton.setBackground(Color.LIGHT_GRAY);
+		DI_goBackButton.setFont(new Font("ALGERIAN", Font.ITALIC, 30));
+		
+		DproceedButton = new JButton("Proceed");
+		DproceedButton.setFocusable(false);
+		DproceedButton.addActionListener(DI_listener);
+		DproceedButton.setBackground(Color.LIGHT_GRAY);
+		DproceedButton.setFont(new Font("ALGERIAN", Font.ITALIC, 30));
+		
+		DI_deleteButton = new JButton("Delete All Decrypted Image");
+		DI_deleteButton.setFocusable(false);
+		DI_deleteButton.addActionListener(DI_listener);
+		DI_deleteButton.setBackground(Color.LIGHT_GRAY);
+		DI_deleteButton.setFont(new Font("ALGERIAN", Font.ITALIC, 30));
+	}
+	
+	//The Image Decryption JI_panelS
+	public void DI_panelS() {
+		
+		DpanelInpanelS1 = new JPanel();
+		DpanelInpanelS1.setLayout(new GridLayout());
+		DpanelInpanelS1.add(DI_decryptImageButton);
+		
+		DpanelInpanelS2 = new JPanel();
+		DpanelInpanelS2.setLayout(new GridLayout(0, 2));
+		DpanelInpanelS2.add(DI_goBackButton);
+		DpanelInpanelS2.add(DI_deleteButton);
+		
+		DI_panelN = new JPanel();
+		DI_panelN.setPreferredSize(new Dimension(300, 100));
+		DI_panelN.setBackground(Color.gray);
+		DI_panelN.add(DtitleLabel);
+		
+		DI_panelS = new JPanel();
+		DI_panelS.setPreferredSize(new Dimension(300, 100));
+		DI_panelS.setBackground(Color.gray);
+		DI_panelS.setLayout(new GridLayout(2, 0));
+		DI_panelS.add(DpanelInpanelS1);
+		DI_panelS.add(DpanelInpanelS2);
+		
+		DI_panelE = new JPanel();
+		DI_panelE.setPreferredSize(new Dimension(100, 300));
+		DI_panelE.setBackground(Color.gray);
+		
+		DI_panelW = new JPanel();
+		DI_panelW.setPreferredSize(new Dimension(100, 300));
+		DI_panelW.setBackground(Color.gray);
+		
+		DI_panelInPanelC = new JPanel();
+		DI_panelInPanelC.setLayout(new BorderLayout());
+		DI_panelInPanelC.setBackground(Color.LIGHT_GRAY);
+		DI_panelInPanelC.setVisible(false);
+		DI_panelInPanelC.add(DinputNameLabel, BorderLayout.WEST);
+		DI_panelInPanelC.add(D_imageNameField, BorderLayout.CENTER);
+		DI_panelInPanelC.add(DproceedButton, BorderLayout.EAST);
+		
+		DI_panelC = new JPanel();
+		DI_panelC.setPreferredSize(new Dimension(300, 300));
+		DI_panelC.setBackground(Color.LIGHT_GRAY);
+		DI_panelC.setLayout(new BorderLayout());
+		DI_panelC.add(DI_panelInPanelC, BorderLayout.NORTH);
+		DI_panelC.add(DsuccessLabel);
+	}
+	
+	//The Image Decryption JTextField
+	public void DI_TextField() {
+		D_imageNameField = new JTextField();
+		D_imageNameField.setFont(new Font("CALIBRI", Font.PLAIN, 25));
+		
+	}
+	
+	
+	
+}
