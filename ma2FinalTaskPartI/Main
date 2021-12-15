@@ -1,0 +1,62 @@
+package ma2FinalTaskPartI;
+
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] qweqweqwe) {
+		
+		
+		Scanner scan = new Scanner(System.in);
+		Data CallData = new Data();
+		
+		System.out.println("[Input personal Data]");
+		System.out.print("Full Name : ");
+		CallData.setName(scan.nextLine());
+		
+		System.out.print("Adress : ");
+		CallData.setAddress(scan.nextLine());
+		
+		System.out.print("Phone Number : ");
+		CallData.setNumber(scan.nextLine());
+		
+		System.out.print("Age : ");
+		CallData.setAge(scan.nextInt());
+		
+		System.out.println("\n[Input Grades]");
+		System.out.print("Math : ");
+		CallData.setMath(scan.nextInt());
+		
+		System.out.print("Science : ");
+		CallData.setSci(scan.nextInt());
+		
+		System.out.print("English : ");
+		CallData.setEng(scan.nextInt());
+		
+		System.out.print("History : ");
+		CallData.setHistory(scan.nextInt());
+		
+		System.out.print("PE : ");
+		CallData.setPE(scan.nextInt());
+		
+		scan.close();
+		
+		
+		System.out.println("\n-Student Data-");
+		System.out.println("Name : " + CallData.getName());
+		System.out.println("Adress : " + CallData.getAddress());
+		System.out.println("Number : " + CallData.getNumber());
+		System.out.println("Age : " + CallData.getAge());
+		
+		System.out.println("\n-Student Grades-");
+		System.out.println("Math : " + CallData.getMath());
+		System.out.println("Science : " + CallData.getSci());
+		System.out.println("English : " + CallData.getEng());
+		System.out.println("History : " + CallData.getHistory());
+		System.out.println("PE : " + CallData.getPE());
+		
+		
+		
+		
+	}
+}
